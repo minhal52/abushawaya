@@ -21,7 +21,7 @@ header {
 }
 
 .logo img {
-  height: 100px;
+  height: 150px;
   border-radius: 70px;
   mix-blend-mode: lighten;
   filter: brightness(1.2) contrast(1.1);

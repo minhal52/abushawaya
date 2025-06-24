@@ -4,71 +4,274 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abu Shawaya | Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+
   <style>
- 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body.loading {
+      overflow: hidden;
+    }
+
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    #bg-video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .text-wrapper {
+      z-index: 2;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      max-width: 300px;
+      height: auto;
+      animation: fadeInScale 1s ease forwards;
+      opacity: 0;
+    }
+
+    .animated-text {
+      font-family: 'Cinzel', serif;
+      color: #fff;
+      font-size: 4.5rem;
+      letter-spacing: 5px;
+      animation: flicker 2s infinite, shake 0.5s infinite;
+      text-shadow: 2px 2px 25px #ffbf00;
+      margin-top: -40px;
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      19%, 23%, 55% { opacity: 0.3; }
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-2px, 1px); }
+      40% { transform: translate(2px, -1px); }
+      60% { transform: translate(-1px, 2px); }
+      80% { transform: translate(1px, -2px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes fadeInScale {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        max-width: 280px;
+      }
+
+      .animated-text {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        max-width: 350px;
+      }
+
+      .animated-text {
+        font-size: 4rem;
+        letter-spacing: 2px;
+      }
+    }
+
+    /* Hide main content until preloader is gone */
+    #main-content {
+      display: none;
+    }
+    .cta {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.cta:hover {
+  background-color: #c40000;
+}
+
   </style>
 </head>
-<body>
+<body class="loading">
 
-  <header>
-    <div class="logo">
-      <img src="/img/Untitled design (2).png" alt="Abu Shawaya Logo">
+  <!-- Preloader -->
+  <div id="preloader">
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="img/13610522_4096_2160_24fps.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="text-wrapper">
+      <img src="img/ABU SHAWAYA LOGO.png" alt="Abu Shawaya Logo" class="logo" />
+      <h1 class="animated-text">Coming Soon</h1>
     </div>
-    <a href="https://www.instagram.com/abu_shawaya?igsh=MWJ4NDd5OG51cW1raA==" class="cta">Follow Us</a>
-  </header>
+  </div>
 
-  <section class="hero">
-    <div class="hero-left">
-      <h1 id="hero-title">Introducing Abu Shawaya</h1>
-      <p id="hero-desc">Where bold fire-grilled chicken meets legendary flavor. Coming soon to Bangalore!</p>
-      <div class="thumbs">
-        <img src="/img/chicken1.jpg" class="thumb active" data-title="Introducing Abu Shawaya" data-desc="Where bold fire-grilled chicken meets legendary flavor. Coming soon to Bangalore!" data-img="/img/chicken1.jpg">
-        <img src="/img/c2.jpg" class="thumb" data-title="Smoky Grilled Chicken" data-desc="Fire-kissed, tender, and packed with flavor." data-img="/img/c2.jpg">
-        <img src="/img/c3.jpg" class="thumb" data-title="Shawaya Inferno" data-desc="Spice-lovers’ heaven. Blazing hot and unforgettable." data-img="/img/c3.jpg">
+  <!-- Main Website Content -->
+  <div id="main-content">
+
+    <header>
+        <div class="logo">
+          <img src="img/ABU SHAWAYA LOGO.png" alt="Abu Shawaya Logo">
+        </div>
+        <div style="display: flex; gap: 15px; align-items: center;">
+          <a href="https://www.instagram.com/abu_shawaya?igsh=MWJ4NDd5OG51cW1raA==" class="cta">Follow Us</a>
+          <!-- <a href="tel:+919999999999" class="cta" style="background-color: #ff6347;">Call Now</a> -->
+        </div>
+      </header>
+      
+
+    <section class="hero">
+      <div class="hero-left">
+        <h1 id="hero-title">Introducing Abu Shawaya</h1>
+        <p id="hero-desc">Where bold fire-grilled chicken meets legendary flavor. Coming soon to Bangalore!</p>
+        <div class="thumbs">
+            <img src="/img/chicken1.jpg" class="thumb active" 
+                 data-title="Introducing Abu Shawaya" 
+                 data-desc="Where bold fire-grilled chicken meets legendary flavor. Coming soon to Bangalore!" 
+                 data-img="/img/chicken1.jpg">
+          
+            <img src="/img/c2.jpg" class="thumb" 
+                 data-title="Smoky Grilled Chicken" 
+                 data-desc="Fire-kissed, tender, and packed with flavor." 
+                 data-img="/img/c2.jpg">
+          
+            <!-- <img src="/img/broast.jpg" class="thumb" 
+                 data-title="Crispy Broasted Chicken" 
+                 data-desc="Golden, juicy, and packed with flavor — our broasted chicken is the star!" 
+                 data-img="/img/broast.jpg">
+          
+            <img src="/img/broast-bucket.jpg" class="thumb" 
+                 data-title="Family Bucket Broast" 
+                 data-desc="Perfect for sharing! Our legendary broast in a generous bucket." 
+                 data-img="/img/broast-bucket.jpg"> -->
+          </div>
+          
       </div>
-    </div>
-    <div class="hero-right">
-      <img src="/img/chicken1.jpg" id="main-image" alt="Chicken" />
-    </div>
-  </section>
+      <div class="hero-right">
+        <img src="/img/chicken1.jpg" id="main-image" alt="Chicken" />
+      </div>
+    </section>
 
-  <!-- About Section -->
     <section class="about" id="about">
-        <video autoplay muted loop playsinline class="about-bg-video">
-          <source src="img/20131338-hd_1920_1080_25fps.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-    <div class="about-container">
-      <div class="about-text">
-        <h2>Welcome to <span style="color:#fff;">ABU SHAWAYA</span> – Where Flavor Rules the Fire!</h2>
-        <p>
-          At <strong>ABU SHAWAYA</strong>, we believe great food starts with great passion. Born from a love for bold spices, tender meat, and perfectly crispy textures, our restaurant brings you the ultimate broast and grilled chicken experience in Bangalore.
-        </p>
-        <p>
-          Whether you’re craving the juicy crunch of our signature broast chicken or the smoky richness of our perfectly grilled chicken, every bite at <strong>ABU SHAWAYA</strong> is a journey of flavor. Our secret marinades, time-honored techniques, and fire-grilled perfection are what set us apart.
-        </p>
-        <p>
-          More than just a meal, <strong>ABU SHAWAYA</strong> is a celebration of taste, tradition, and togetherness. We serve with heart, we cook with soul—and we welcome you to be a part of our story.
-        </p>
-        <p>Pull up a chair, dig in, and let the flavor speak for itself.</p>
-        <p><strong>ABU SHAWAYA – Broast & Grills Like No Other.</strong></p>
+      <video autoplay muted loop playsinline class="about-bg-video">
+        <source src="img/20131338-hd_1920_1080_25fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="about-container">
+        <div class="about-text">
+          <h2>Welcome to <span style="color:#fff;">ABU SHAWAYA</span> – Where Flavor Rules the Fire!</h2>
+          <p>
+            At <strong>ABU SHAWAYA</strong>, we believe great food starts with great passion. Born from a love for bold spices, tender meat, and perfectly crispy textures, our restaurant brings you the ultimate broast and grilled chicken experience in Bangalore.
+          </p>
+          <p>
+            Whether you’re craving the juicy crunch of our signature broast chicken or the smoky richness of our perfectly grilled chicken, every bite at <strong>ABU SHAWAYA</strong> is a journey of flavor. Our secret marinades, time-honored techniques, and fire-grilled perfection are what set us apart.
+          </p>
+          <p>
+            More than just a meal, <strong>ABU SHAWAYA</strong> is a celebration of taste, tradition, and togetherness. We serve with heart, we cook with soul—and we welcome you to be a part of our story.
+          </p>
+          <p>Pull up a chair, dig in, and let the flavor speak for itself.</p>
+          <p><strong>ABU SHAWAYA – Broast & Grills Like No Other.</strong></p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <section class="outlet-gallery">
+        <h2 style="
+        text-align: center;
+        color: #fff;
+        margin-bottom: 30px;
+        font-family: 'Cinzel', serif;
+        font-size: 3rem;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 10px #000;
+      ">Our Outlet</h2>
+      
+        <div class="gallery-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+          <img src="/img/outlet1.jpg" alt="Outlet 1" style="max-width: 300px; border-radius: 10px;">
+          <img src="/img/outlet2.jpg" alt="Outlet 2" style="max-width: 300px; border-radius: 10px;">
+          <img src="/img/outlet3.jpg" alt="Outlet 3" style="max-width: 300px; border-radius: 10px;">
+          <img src="/img/outlet4.jpg" alt="Outlet 3" style="max-width: 300px; border-radius: 10px;">
+          <img src="/img/outlet5.jpg" alt="Outlet 3" style="max-width: 300px; border-radius: 10px;">
 
-  <!-- Stay Tuned Section -->
-  <section class="stay-section">
-    <h1 class="stay-tuned">Stay Tuned Bangalore</h1>
-  </section>
+        </div>
+      </section>
+      
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>🚧 We’re firing up the grills! Abu Shawaya is launching soon in Bangalore. Stay tuned!<br>© 2025 Abu Shawaya. All rights reserved.</p>
-  </footer>
+      <section class="stay-section">
+        <h1 class="stay-tuned">Stay Tuned Bangalore</h1>
+        <!-- <p style="text-align: center; color: #fff; margin-top: 10px;">📍 Location: 123 Food Street, Indiranagar, Bangalore</p> -->
+      </section>
+      
+    <footer class="footer">
+      <p>🚧 We’re firing up the grills! Abu Shawaya is launching soon in Bangalore. Stay tuned!<br>© 2025 Abu Shawaya. All rights reserved.</p>
+    </footer>
 
+  </div>
+
+  <!-- JS for Preloader + Slide Swapping -->
   <script>
+    // Preloader transition
+    window.addEventListener("load", function () {
+      const preloader = document.getElementById("preloader");
+      const mainContent = document.getElementById("main-content");
+
+      setTimeout(() => {
+        preloader.style.opacity = "0";
+        preloader.style.transition = "opacity 1s ease";
+
+        setTimeout(() => {
+          preloader.style.display = "none";
+          mainContent.style.display = "block";
+          document.body.classList.remove("loading");
+        }, 1000);
+      }, 3000); // delay for preloader
+    });
+
+    // Slideshow logic
     const thumbs = document.querySelectorAll('.thumb');
     const mainImage = document.getElementById('main-image');
     const heroTitle = document.getElementById('hero-title');
@@ -80,7 +283,6 @@
       mainImage.src = thumb.dataset.img;
       heroTitle.textContent = thumb.dataset.title;
       heroDesc.textContent = thumb.dataset.desc;
-
       thumbs.forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
     }
@@ -97,6 +299,5 @@
       updateSlide(currentIndex);
     }, 4000);
   </script>
-
 </body>
 </html>
