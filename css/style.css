@@ -53,6 +53,7 @@ header {
   min-height: 100vh;
   background: url('/img/bg-dark.jpg') no-repeat center center/cover;
   z-index: 1;
+  margin-top: -100px;
 }
 
 .hero::before {
@@ -116,13 +117,14 @@ header {
   max-width: 50%;
   text-align: center;
 }
-
 .hero-right img {
-  width: 100%;
-  max-width: 500px;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(255, 191, 0, 0.4);
 }
+
 
 .about {
   background-color: #000;
@@ -163,10 +165,21 @@ header {
 }
 
 @media (max-width: 768px) {
+  .hero-right img {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .thumb {
+    width: 60px;
+    height: 60px;
+  }
+  
   .hero {
     flex-direction: column-reverse;
     padding: 60px 5%;
     text-align: center;
+    margin-top: -30px;
   }
 
   .hero-left,
