@@ -161,7 +161,7 @@
       />
 
       <div class="loader"></div>
-      <h1><span class="typed-text"></span><span class="cursor">|</span></h1>
+      <!-- <h1><span class="typed-text"></span><span class="cursor">|</span></h1> -->
     </div>
 
     <!-- Main Website Content -->
@@ -363,89 +363,59 @@
 
       <footer class="footer">
         <p>
-          🚧 We’re firing up the grills! Abu Shawaya is launching soon in
-          Bangalore. Stay tuned!<br />© 2025 Abu Shawaya. All rights reserved.
+          🚧 We’re firing up the grills!. Stay tuned!<br />© 2025 Abu Shawaya. All rights reserved.
         </p>
       </footer>
     </div>
 
-    <!-- JS for Preloader + Slide Swapping -->
-    <script>
-      const text = "Coming Soon";
-      const typedText = document.querySelector(".typed-text");
-      const cursor = document.querySelector(".cursor");
+   <!-- JS for Preloader + Slide Swapping -->
+<script>
+  window.addEventListener("load", () => {
+    // Wait briefly, then fade out the preloader and show main content
+    setTimeout(() => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      setTimeout(() => {
+        preloader.style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+        document.body.classList.remove("loading");
+        initSlideshow(); // ✅ Start slideshow only after preloader ends
+      }, 1000);
+    }, 1000); // Adjust delay as needed
+  });
 
-      let index = 0;
+  // ✅ Slideshow logic (only runs after preloader ends)
+  function initSlideshow() {
+    const thumbs = document.querySelectorAll(".thumb");
+    const mainImage = document.getElementById("main-image");
+    const heroTitle = document.getElementById("hero-title");
+    const heroDesc = document.getElementById("hero-desc");
 
-      function type() {
-        if (index < text.length) {
-          typedText.textContent += text.charAt(index);
-          index++;
-          setTimeout(type, 150);
-        } else {
-          animateDots();
-        }
-      }
+    let currentIndex = 0;
 
-      function animateDots() {
-        let dotCount = 0;
-        const maxDots = 3;
-        const dotInterval = setInterval(() => {
-          if (dotCount < maxDots) {
-            typedText.textContent += ".";
-            dotCount++;
-          } else {
-            clearInterval(dotInterval);
-            setTimeout(() => {
-              const preloader = document.getElementById("preloader");
-              preloader.style.opacity = "0";
-              setTimeout(() => {
-                preloader.style.display = "none";
-                document.getElementById("main-content").style.display = "block";
-                document.body.classList.remove("loading");
-                initSlideshow(); // ✅ Start slideshow only after preloader ends
-              }, 1000);
-            }, 500);
-          }
-        }, 400);
-      }
+    function updateSlide(index) {
+      const thumb = thumbs[index];
+      mainImage.src = thumb.dataset.img;
+      heroTitle.textContent = thumb.dataset.title;
+      heroDesc.textContent = thumb.dataset.desc;
+      thumbs.forEach((t) => t.classList.remove("active"));
+      thumb.classList.add("active");
+    }
 
-      window.addEventListener("load", () => {
-        setTimeout(type, 500);
-      });
+    updateSlide(currentIndex);
 
-      // ✅ Slideshow logic (only runs after preloader ends)
-      function initSlideshow() {
-        const thumbs = document.querySelectorAll(".thumb");
-        const mainImage = document.getElementById("main-image");
-        const heroTitle = document.getElementById("hero-title");
-        const heroDesc = document.getElementById("hero-desc");
-
-        let currentIndex = 0;
-
-        function updateSlide(index) {
-          const thumb = thumbs[index];
-          mainImage.src = thumb.dataset.img;
-          heroTitle.textContent = thumb.dataset.title;
-          heroDesc.textContent = thumb.dataset.desc;
-          thumbs.forEach((t) => t.classList.remove("active"));
-          thumb.classList.add("active");
-        }
-
+    thumbs.forEach((thumb, index) => {
+      thumb.addEventListener("click", () => {
+        currentIndex = index;
         updateSlide(currentIndex);
+      });
+    });
 
-        thumbs.forEach((thumb, index) => {
-          thumb.addEventListener("click", () => {
-            currentIndex = index;
-            updateSlide(currentIndex);
-          });
-        });
-
-        setInterval(() => {
-          currentIndex = (currentIndex + 1) % thumbs.length;
-          updateSlide(currentIndex);
-        }, 3000);
-      }
-    </script>
-  </body>
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % thumbs.length;
+      updateSlide(currentIndex);
+    }, 3000);
+  }
+</script>
+</body>
 </html>
