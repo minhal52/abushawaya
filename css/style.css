@@ -127,14 +127,14 @@ header {
   background: transparent;
   padding: 0;
   border-radius: 0;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  /* box-shadow removed */
   display: inline-block;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .hero-image-box:hover {
   transform: scale(1.02);
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
+  /* box-shadow removed */
 }
 
 .hero-image-box img {
